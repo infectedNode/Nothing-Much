@@ -23,9 +23,11 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use((req, res, next) => {
-    res.render('maintenance.hbs');
-});
+
+// For Maintenance Page
+// app.use((req, res, next) => {
+//     res.render('maintenance.hbs');
+// });
 
 app.use(express.static(__dirname + '/public'));
 
@@ -49,11 +51,16 @@ app.get('/about', (req, res) => {
     });
 });
 
+app.get('/projects', (req, res) => {
+    res.render('projects.hbs', {
+        title: 'My Projects',
+    })
+});
+
 app.get('/bad', (req, res) => {
     res.send('<h3 style="color: red">Unable to load the page.... try again later</h3>')
 });
 
 app.listen(port, () => {
-    console.log(`Server is up at port ${port}`);
-    
+    console.log(`Server is up at port ${port}`);  
 }); 
